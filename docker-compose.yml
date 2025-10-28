@@ -1,0 +1,39 @@
+version: "3.0"
+
+services:
+  app:
+    build: .
+    container_name: ekan-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/ekan
+      - SPRING_DATASOURCE_USERNAME=ekan_user
+      - SPRING_DATASOURCE_PASSWORD=ekan_pass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_FLYWAY_ENABLED=true
+      - MAIL_HOST=smtp.ethereal.email
+      - MAIL_PORT=587
+      - MAIL_USERNAME=SEU_EMAIL
+      - MAIL_PASSWORD=SEU_SENHA
+
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: ekan-db
+    environment:
+      - POSTGRES_DB=ekan
+      - POSTGRES_USER=ekan_user
+      - POSTGRES_PASSWORD=ekan_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
