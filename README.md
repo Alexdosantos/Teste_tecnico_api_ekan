@@ -22,8 +22,13 @@ Para acessar a documentação da API, basta acessar o endereço:
 http://localhost:8080/api/v1/swagger-ui/index.html
 
 ## STMP Ethereal
-O STMP foi configurado para enviar emails para o email do paciente, para que ele possa receber o agendamento convertido para FHIR R5 (recurso Encounter).
-Para que o STMP funcione, voce deve ter uma conta no Ethereal ou usar outro STMP de sua preferencia.
+O SMTP foi configurado para enviar e-mails automaticamente ao paciente.
+Durante a criação de um novo atendimento, o sistema envia um e-mail de confirmação do agendamento normalmente.
+
+Além disso, o envio de email também foi configurado para, ao realizar a pesquisa do último atendimento do paciente, enviar o agendamento convertido para o padrão FHIR R5 (recurso Encounter).
+
+Para que o envio de e-mails funcione corretamente, é necessário possuir uma conta no Ethereal (para testes) ou utilizar qualquer outro servidor SMTP de sua preferência.
+
 ```
  https://ethereal.email/create
 ```
